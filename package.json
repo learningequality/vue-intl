@@ -1,0 +1,33 @@
+{
+  "name": "vue-intl",
+  "version": "0.0.1",
+  "description": "Vue Plugin for FormatJS Internalization and Localization",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learningequality/vue-intl.git"
+  },
+  "keywords": [
+    "intl",
+    "i18n",
+    "internationalization",
+    "locale",
+    "localization",
+    "globalization",
+    "vue",
+    "vuejs",
+    "format",
+    "formatting",
+    "translate",
+    "translation"
+  ],
+  "author": "Richard Tibbles <richard@learningequality.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/learningequality/vue-intl/issues"
+  },
+  "homepage": "https://github.com/learningequality/vue-intl#readme"
+}
