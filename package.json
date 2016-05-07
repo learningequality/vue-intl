@@ -2,9 +2,9 @@
   "name": "vue-intl",
   "version": "0.0.1",
   "description": "Vue Plugin for FormatJS Internalization and Localization",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "mocha --recursive test/"
+    "test": "mocha --compilers js:babel-register --require babel-polyfill --require intl --recursive test/unit"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,22 @@
   "bugs": {
     "url": "https://github.com/learningequality/vue-intl/issues"
   },
-  "homepage": "https://github.com/learningequality/vue-intl#readme"
+  "homepage": "https://github.com/learningequality/vue-intl#readme",
+  "dependencies": {
+    "intl-format-cache": "^2.0.5",
+    "intl-messageformat": "^1.3.0",
+    "intl-relativeformat": "^1.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.8.0",
+    "babel-plugin-transform-es3-property-literals": "^6.8.0",
+    "babel-polyfill": "^6.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-register": "^6.8.0",
+    "expect": "^1.19.0",
+    "intl": "^1.1.0",
+    "mocha": "^2.4.5"
+  }
 }
