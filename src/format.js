@@ -39,12 +39,12 @@ import {
     dateTimeFormatPropTypes,
     numberFormatPropTypes,
     relativeFormatPropTypes,
-    pluralFormatPropTypes,
+    pluralFormatPropTypes
 } from './types';
 
 import {
     escape,
-    filterProps,
+    filterProps
 } from './utils';
 
 const DATE_TIME_FORMAT_OPTIONS = Object.keys(dateTimeFormatPropTypes);
@@ -210,12 +210,12 @@ export function formatMessage(config, state, messageDescriptor = {}, values = {}
         formats,
         messages,
         defaultLocale,
-        defaultFormats,
+        defaultFormats
     } = config;
 
     const {
         id,
-        defaultMessage,
+        defaultMessage
     } = messageDescriptor;
 
     // `id` is a required field of a Message Descriptor.

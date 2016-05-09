@@ -1,0 +1,4 @@
+--compilers js:babel-register
+--require intl
+--recursive
+test/**/*.js

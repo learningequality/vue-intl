@@ -46,4 +46,4 @@ VueIntlPlugin.install = function (Vue, options) {
     }
 };
 
-module.exports = VueIntlPlugin;
+export default VueIntlPlugin;
