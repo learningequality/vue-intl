@@ -73,11 +73,11 @@ function hasIMFAndIRFLocaleData(locale) {
 export function registerMessages(Vue, locale, messages) {
     Vue.__allMessages = Vue.__allMessages || {};
     Vue.__allMessages[locale] = Vue.__allMessages[locale] || {};
-    Vue.__allMessages[locale].assign(messages);
+    Object.assign(Vue.__allMessages[locale], messages);
 }
 
 export function registerFormats(Vue, locale, formats) {
     Vue.__allFormats = Vue.__allFormats || {};
     Vue.__allFormats[locale] = Vue.__allFormats[locale] || {};
-    Vue.__allFormats[locale].assign(formats);
+    Object.assign(Vue.__allFormats[locale], formats);
 }

@@ -39,7 +39,7 @@ const bool = { type : Boolean },
     object = { type : Object },
     oneOf = function(array) {
         return {validator: function(value) {
-            return array.findIndex(value) > -1;
+            return array.indexOf(value) > -1;
         }};
     };
 

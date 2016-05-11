@@ -1,47 +1,31 @@
 import {addLocaleData, registerMessages, registerFormats} from './localeData';
 import setLocale from './setLocale';
 import state from './state';
-import {
-    formatDate,
-    formatTime,
-    formatRelative,
-    formatNumber,
-    formatPlural,
-    formatMessage,
-    formatHTMLMessage
-} from './format';
+import * as formatMethods from './format';
 
-const formatMethods = {
-    formatDate,
-    formatTime,
-    formatRelative,
-    formatNumber,
-    formatPlural,
-    formatMessage,
-    formatHTMLMessage
-};
+const VueIntlPlugin = {
+    install(Vue, options={}) {
+        Vue.addLocaleData = addLocaleData;
+        Vue.registerMessages = registerMessages.bind(null, Vue);
+        Vue.registerFormats = registerFormats.bind(null, Vue);
+        Vue.setLocale = setLocale.bind(null, Vue);
+        Vue.__format_state = state;
+        Vue.__format_config = {
+            formats: options.defaultFormats || {},
+            messages: {},
+            defaultLocale: options.defaultLocale || 'en',
+            defaultFormats: options.defaultFormats || {}
+        };
 
-var VueIntlPlugin = {};
-
-VueIntlPlugin.install = function (Vue, options) {
-    Vue.addLocaleData = addLocaleData;
-    Vue.registerMessages = registerMessages.bind(null, Vue);
-    Vue.registerFormats = registerFormats.bind(null, Vue);
-    Vue.setLocale = setLocale.bind(null, Vue);
-    Vue.__format_state = state;
-    Vue.__format_config = {
-        formats: options.defaultFormats || {},
-        messages: {},
-        defaultLocale: options.defaultLocale || 'en',
-        defaultFormats: options.defaultFormats || {}
-    };
-
-    for (let key of formatMethods) {
-        Vue.prototype['\$${key}'] = function(...args) {
-            let config = {locale: Vue.$get('locale')};
-            config.assign(Vue.__format_config);
-            const state = Vue.__format_state;
-            return formatMethods[key](config, state, ...args);
+        for (let key of Object.getOwnPropertyNames(formatMethods).filter((name) => {
+            return formatMethods[name] instanceof Function;
+        })) {
+            Vue.prototype[`\$${key}`] = function(...args) {
+                let config = {locale: Vue.$get('locale')};
+                Object.assign(config, Vue.__format_config);
+                const state = Vue.__format_state;
+                return formatMethods[key](config, state, ...args);
+            }
         }
     }
 };

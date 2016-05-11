@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Vue Plugin for FormatJS Internalization and Localization",
   "main": "lib/vue_intl.js",
-  "engines" : {
-    "node" : ">=0.12.0"
+  "engines": {
+    "node": ">=0.12.0"
   },
   "scripts": {
     "test:code": "mocha",
