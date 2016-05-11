@@ -3,7 +3,7 @@ import setLocale from './setLocale';
 import state from './state';
 import * as formatMethods from './format';
 
-const VueIntlPlugin = {
+const VueIntl = {
     install(Vue, options={}) {
         Vue.addLocaleData = addLocaleData;
         Vue.registerMessages = registerMessages.bind(null, Vue);
@@ -30,4 +30,4 @@ const VueIntlPlugin = {
     }
 };
 
-export default VueIntlPlugin;
+export default VueIntl;

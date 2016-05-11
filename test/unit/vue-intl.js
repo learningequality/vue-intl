@@ -1,8 +1,8 @@
 import expect, {createSpy, spyOn} from 'expect';
-import VueIntlPlugin from '../../src/vue-intl';
+import VueIntl from '../../src/vue-intl';
 import * as formatMethods from '../../src/format';
 
-describe("VueIntlPlugin API", () => {
+describe("VueIntl API", () => {
     let VueSpy;
     beforeEach(() => {
         VueSpy = class {
@@ -10,7 +10,7 @@ describe("VueIntlPlugin API", () => {
                 this.test = 'test';
             }
         };
-        VueIntlPlugin.install(VueSpy);
+        VueIntl.install(VueSpy);
     });
     afterEach(() => {
         VueSpy = undefined;
