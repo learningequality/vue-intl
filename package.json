@@ -6,6 +6,7 @@
   "directories": {
     "lib": "./dist"
   },
+  "files": ["dist"],
   "engines": {
     "node": ">=0.12.0"
   },
