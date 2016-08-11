@@ -21,7 +21,7 @@ const VueIntl = {
             return formatMethods[name] instanceof Function;
         })) {
             Vue.prototype[`\$${key}`] = function(...args) {
-                let config = {locale: Vue.$get('locale')};
+                let config = {locale: Vue.locale};
                 Object.assign(config, Vue.__format_config);
                 const state = Vue.__format_state;
                 return formatMethods[key](config, state, ...args);
