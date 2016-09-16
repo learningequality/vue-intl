@@ -1,5 +1,6 @@
 import {addLocaleData, registerMessages, registerFormats} from './localeData';
 import setLocale from './setLocale';
+import getLocaleData from './getLocaleData';
 import state from './state';
 import * as formatMethods from './format';
 
@@ -11,8 +12,6 @@ const VueIntl = {
         Vue.setLocale = setLocale.bind(null, Vue);
         Vue.__format_state = state;
         Vue.__format_config = {
-            formats: options.defaultFormats || {},
-            messages: {},
             defaultLocale: options.defaultLocale || 'en',
             defaultFormats: options.defaultFormats || {}
         };
@@ -22,7 +21,7 @@ const VueIntl = {
         })) {
             Vue.prototype[`\$${key}`] = function(...args) {
                 let config = {locale: Vue.locale};
-                Object.assign(config, Vue.__format_config);
+                Object.assign(config, getLocaleData(Vue));
                 const state = Vue.__format_state;
                 return formatMethods[key](config, state, ...args);
             }
