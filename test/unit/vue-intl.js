@@ -43,18 +43,18 @@ describe("VueIntl API", () => {
     describe("setLocale", () => {
         beforeEach(() => {
             const setSpy = createSpy();
-            VueSpy.$set = setSpy;
+            VueSpy.set = setSpy;
         });
         afterEach(() => {
-            VueSpy.$set.restore();
-            delete VueSpy.$set;
+            VueSpy.set.restore();
+            delete VueSpy.set;
         });
         it("is present", () => {
             expect(VueSpy.setLocale).toExist();
         });
         it("calls set on the global Vue instance", () => {
             VueSpy.setLocale("test-language");
-            expect(VueSpy.$set).toHaveBeenCalledWith('locale', 'test-language');
+            expect(VueSpy.set).toHaveBeenCalledWith('locale', 'test-language');
         });
     });
     describe("__format_state", () => {
