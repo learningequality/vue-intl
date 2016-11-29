@@ -83,7 +83,7 @@ This will format dates to the locale appropriate format.
 
 
 ```html
-<p>{{{ $formatDate(now) }}}</p>
+<p v-html="$formatDate(now)"></p>
 ```
 
 Where `now` is a Javascript Date object or a `Date` coercable `Number` or `String`.
@@ -99,7 +99,7 @@ Will output the following
 The method can also accept a second argument of an options object - the options follow the [`Intl.DateTimeFormat` API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat).
 
 ```html
-<p>{{{ $formatDate(now, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) }}}</p>
+<p v-html="$formatDate(now, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })"></p>
 ```
 
 Will output the following
@@ -119,7 +119,7 @@ This will format times to the locale appropriate format.
 
 
 ```html
-<p>{{{ $formatTime(now, {format: 'short'}) }}}</p>
+<p v-html="$formatTime(now, {format: 'short'})"></p>
 ```
 
 These formats are described in the [FormatJS main documentation](http://formatjs.io/guides/message-syntax/#time-type).
@@ -142,7 +142,7 @@ This will render date-times relative to page load time or to an inserted `now` o
 
 
 ```html
-<p>{{{ $formatRelative(two_days_ago) }}}</p>
+<p v-html="$formatRelative(two_days_ago)"></p>
 ```
 
 These formats are described in the [FormatJS main documentation](http://formatjs.io/guides/message-syntax/#time-type).
@@ -163,7 +163,7 @@ This will set numbers to the locale appropriate format.
 
 
 ```html
-<p>{{{ $formatNumber(number_of_things) }}}</p>
+<p v-html="$formatNumber(number_of_things)"></p>
 ```
 
 These formats are described in the [FormatJS main documentation](http://formatjs.io/guides/message-syntax/#number-type).
@@ -177,7 +177,7 @@ Will output the following
 (if the locale is set to 'en-US').
 
 ```html
-<p>{{{ $formatNumber(pct_of_things, {style: 'percent'}) }}}</p>
+<p v-html="$formatNumber(pct_of_things, {style: 'percent'})"></p>
 ```
 
 Will output the following
@@ -196,7 +196,7 @@ This will format according to plural rules for the locale appropriate format.
 
 
 ```html
-<p>{{{ $formatPlural(number_of_things, {style: 'cardinal') }}}</p>
+<p v-html="$formatPlural(number_of_things, {style: 'cardinal')"></p>
 ```
 
 These formats are described in the [FormatJS main documentation](http://formatjs.io/guides/message-syntax/#plural-format).
@@ -210,7 +210,7 @@ Will output the following
 (if the locale is set to 'fr-FR').
 
 ```html
-<p>{{{ $formatPlural(number_of_things, {style: 'ordinal') }}}</p>
+<p v-html="$formatPlural(number_of_things, {style: 'ordinal')"></p>
 ```
 
 These formats are described in the [FormatJS main documentation](http://formatjs.io/guides/message-syntax/#ordinal-format).
@@ -233,12 +233,12 @@ Messages are specified using ICU message syntax.
 
 
 ```html
-<p>{{{ $formatMessage({id: 'example_message_id', defaultMessage: "It's my cat's {year, selectordinal,
+<p v-html="$formatMessage({id: 'example_message_id', defaultMessage: 'It\'s my cat\'s {year, selectordinal,
     one {#st}
     two {#nd}
     few {#rd}
     other {#th}
-} birthday!"}, {year: year}) }}}</p>
+} birthday!'}, {year: year})"></p>
 ```
 
 These formats are described in the [FormatJS main documentation](http://formatjs.io/guides/message-syntax/).
