@@ -1,6 +1,6 @@
 {
   "name": "vue-intl",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "Vue Plugin for FormatJS Internalization and Localization",
   "main": "dist/vue-intl.js",
   "directories": {
