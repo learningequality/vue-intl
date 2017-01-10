@@ -43,18 +43,18 @@ describe("VueIntl API", () => {
     describe("setLocale", () => {
         beforeEach(() => {
             const setSpy = createSpy();
-            VueSpy.$set = setSpy;
+            VueSpy.set = setSpy;
         });
         afterEach(() => {
-            VueSpy.$set.restore();
-            delete VueSpy.$set;
+            VueSpy.set.restore();
+            delete VueSpy.set;
         });
         it("is present", () => {
             expect(VueSpy.setLocale).toExist();
         });
         it("calls set on the global Vue instance", () => {
             VueSpy.setLocale("test-language");
-            expect(VueSpy.$set).toHaveBeenCalledWith('locale', 'test-language');
+            expect(VueSpy.set).toHaveBeenCalledWith(VueSpy, 'locale', 'test-language');
         });
     });
     describe("__format_state", () => {
@@ -79,20 +79,24 @@ describe("VueIntl API", () => {
                 it(`${test} is invoked with local config state`, () => {
                     let methodSpy = spyOn(formatMethods, test);
                     const lang = 'test-language';
-                    let getSpy = createSpy().andReturn(lang);
-                    VueSpy.$get = getSpy;
+                    VueSpy.locale = lang;
                     const config = {
-                        format: {test: "test"},
+                        formats: {test: "test"},
                         messages: {hello: "hello"},
                         defaultLocale: lang,
                         defaultFormats: {untest: "untest"}
                     };
                     const state = {};
+                    VueSpy.__allFormats = {
+                        [lang]: {test: "test"}
+                    };
+                    VueSpy.__allMessages = {
+                        [lang]: {hello: "hello"}
+                    };
                     VueSpy.__format_config = config;
                     VueSpy.__format_state = state;
                     const vue = new VueSpy();
                     vue[`\$${test}`]();
-                    expect(getSpy).toHaveBeenCalledWith('locale');
                     expect(methodSpy).toHaveBeenCalledWith(Object.assign({locale: lang}, config), state);
                 });
             });

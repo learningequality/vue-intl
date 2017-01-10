@@ -9,17 +9,17 @@ describe("setLocale", () => {
                 this.test = 'test';
             }
         };
-        VueSpy.$set = createSpy();
+        VueSpy.set = createSpy();
         VueSpy.__format_config = {};
     });
     afterEach(() => {
-        VueSpy.$set.restore();
-        delete VueSpy.$set;
+        VueSpy.set.restore();
+        delete VueSpy.set;
         VueSpy = undefined;
     });
     it("calls set on the passed in Vue constructor", () => {
         setLocale(VueSpy, "test-language");
-        expect(VueSpy.$set).toHaveBeenCalledWith('locale', 'test-language');
+        expect(VueSpy.set).toHaveBeenCalledWith(VueSpy,'locale', 'test-language');
     });
     it("sets format config to locale format if available", () => {
         const lang = "test-language";
