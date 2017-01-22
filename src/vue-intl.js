@@ -3,6 +3,8 @@ import setLocale from './setLocale';
 import getLocaleData from './getLocaleData';
 import state from './state';
 import * as formatMethods from './format';
+import FormattedMessage from './FormattedMessage'
+export { FormattedMessage }
 
 const VueIntl = {
     install(Vue, options={}) {
