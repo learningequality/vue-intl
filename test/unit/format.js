@@ -63,7 +63,14 @@ describe('format API', () => {
                 empty: '',
                 invalid: 'invalid {}',
                 missing_value: 'missing {arg_missing}',
-                missing_named_format: 'missing {now, date, format_missing}'
+                missing_named_format: 'missing {now, date, format_missing}',
+                namespace: {
+                    deep: {
+                        no_args: 'Hello, World!'
+                    },
+                    with_arg: 'Hello, {name}!'
+                },
+                "dot.namespace": 'Hello, World!'
             },
 
             formats: {
@@ -656,12 +663,34 @@ describe('format API', () => {
             expect(formatMessage({id: 'no_args'})).toBe(mf.format());
         });
 
+        it('formats basic namespaced messages', () => {
+            const {locale, messages} = config;
+            const mf = new IntlMessageFormat(messages.namespace.deep.no_args, locale);
+
+            expect(formatMessage({id: 'namespace.deep.no_args'})).toBe(mf.format());
+        });
+
+        it('formats dot-namespaced messages', () => {
+            const {locale, messages} = config;
+            const mf = new IntlMessageFormat(messages["dot.namespace"], locale);
+
+            expect(formatMessage({id: 'dot.namespace'})).toBe(mf.format());
+        });
+
         it('formats messages with placeholders', () => {
             const {locale, messages} = config;
             const mf = new IntlMessageFormat(messages.with_arg, locale);
             const values = {name: 'Eric'};
 
             expect(formatMessage({id: 'with_arg'}, values)).toBe(mf.format(values));
+        });
+
+        it('formats namespaced messages with placeholders', () => {
+            const {locale, messages} = config;
+            const mf = new IntlMessageFormat(messages.namespace.with_arg, locale);
+            const values = {name: 'Eric'};
+
+            expect(formatMessage({id: 'namespace.with_arg'}, values)).toBe(mf.format(values));
         });
 
         it('formats messages with named formats', () => {
