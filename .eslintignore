@@ -1,2 +1,3 @@
 coverage/**/*.js
 dist/**/*.js
+locale-data/**/*.js

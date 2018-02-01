@@ -1,6 +1,4 @@
 import * as p from 'path';
-import * as fs from 'fs';
-import {rollup} from 'rollup';
 import babel from 'rollup-plugin-babel';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
@@ -51,45 +49,30 @@ const copyright = (
 );
 
 const isProduction = process.env.NODE_ENV === 'production';
-const entry = p.resolve('src/vue-intl.js');
-const dest  = p.resolve(`dist/vue-intl.${isProduction ? 'min.js' : 'js'}`);
 
-const bundleConfig = {
-    dest,
+export default {
+  input: p.resolve('src/vue-intl.js'),
+  output: {
+    file: p.resolve(`dist/vue-intl.${isProduction ? 'min.js' : 'js'}`),
     format: 'umd',
-    moduleName: 'VueIntl',
-    banner: copyright,
-    sourceMap: true
-};
-
-let babelConfig = JSON.parse(fs.readFileSync('src/.babelrc', 'utf8'));
-babelConfig.babelrc = false;
-babelConfig.presets = babelConfig.presets.map((preset) => {
-    return preset === 'es2015' ? 'es2015-rollup' : preset;
-});
-
-let plugins = [
-    babel(babelConfig),
+  },
+  name: 'VueIntl',
+  banner: copyright,
+  sourcemap: true,
+  plugins: [
+    babel(),
     nodeResolve({
-        jsnext: true
+      jsnext: true,
     }),
     commonjs({
-        sourceMap: true
+      sourcemap: true,
     }),
     replace({
-        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-];
-
-if (isProduction) {
-    plugins.push(
-        uglify({
-            warnings: false
-        })
-    );
-}
-
-let bundle = Promise.resolve(rollup({entry, plugins}));
-bundle.then((bundle) => bundle.write(bundleConfig));
-
-process.on('unhandledRejection', (reason) => {throw reason;});
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
+    isProduction &&
+      uglify({
+        warnings: false,
+      }),
+  ].filter(Boolean),
+};

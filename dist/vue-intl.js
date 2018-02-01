@@ -39,10 +39,10 @@
  */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.VueIntl = factory());
-}(this, (function () { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.VueIntl = {})));
+}(this, (function (exports) { 'use strict';
 
 /*
 Copyright (c) 2014, Yahoo! Inc. All rights reserved.
@@ -351,14 +351,14 @@ var parser = (function () {
         peg$startRuleFunctions = { start: peg$parsestart },
         peg$startRuleFunction = peg$parsestart,
         peg$c0 = [],
-        peg$c1 = function peg$c1(elements) {
+        peg$c1 = function (elements) {
       return {
         type: 'messageFormatPattern',
         elements: elements
       };
     },
         peg$c2 = peg$FAILED,
-        peg$c3 = function peg$c3(text) {
+        peg$c3 = function (text) {
       var string = '',
           i,
           j,
@@ -376,7 +376,7 @@ var parser = (function () {
 
       return string;
     },
-        peg$c4 = function peg$c4(messageText) {
+        peg$c4 = function (messageText) {
       return {
         type: 'messageTextElement',
         value: messageText
@@ -391,7 +391,7 @@ var parser = (function () {
         peg$c11 = { type: "literal", value: ",", description: "\",\"" },
         peg$c12 = "}",
         peg$c13 = { type: "literal", value: "}", description: "\"}\"" },
-        peg$c14 = function peg$c14(id, format) {
+        peg$c14 = function (id, format) {
       return {
         type: 'argumentElement',
         id: id,
@@ -404,7 +404,7 @@ var parser = (function () {
         peg$c18 = { type: "literal", value: "date", description: "\"date\"" },
         peg$c19 = "time",
         peg$c20 = { type: "literal", value: "time", description: "\"time\"" },
-        peg$c21 = function peg$c21(type, style) {
+        peg$c21 = function (type, style) {
       return {
         type: type + 'Format',
         style: style && style[2]
@@ -412,7 +412,7 @@ var parser = (function () {
     },
         peg$c22 = "plural",
         peg$c23 = { type: "literal", value: "plural", description: "\"plural\"" },
-        peg$c24 = function peg$c24(pluralStyle) {
+        peg$c24 = function (pluralStyle) {
       return {
         type: pluralStyle.type,
         ordinal: false,
@@ -422,7 +422,7 @@ var parser = (function () {
     },
         peg$c25 = "selectordinal",
         peg$c26 = { type: "literal", value: "selectordinal", description: "\"selectordinal\"" },
-        peg$c27 = function peg$c27(pluralStyle) {
+        peg$c27 = function (pluralStyle) {
       return {
         type: pluralStyle.type,
         ordinal: true,
@@ -432,7 +432,7 @@ var parser = (function () {
     },
         peg$c28 = "select",
         peg$c29 = { type: "literal", value: "select", description: "\"select\"" },
-        peg$c30 = function peg$c30(options) {
+        peg$c30 = function (options) {
       return {
         type: 'selectFormat',
         options: options
@@ -440,7 +440,7 @@ var parser = (function () {
     },
         peg$c31 = "=",
         peg$c32 = { type: "literal", value: "=", description: "\"=\"" },
-        peg$c33 = function peg$c33(selector, pattern) {
+        peg$c33 = function (selector, pattern) {
       return {
         type: 'optionalFormatPattern',
         selector: selector,
@@ -449,10 +449,10 @@ var parser = (function () {
     },
         peg$c34 = "offset:",
         peg$c35 = { type: "literal", value: "offset:", description: "\"offset:\"" },
-        peg$c36 = function peg$c36(number) {
+        peg$c36 = function (number) {
       return number;
     },
-        peg$c37 = function peg$c37(offset, options) {
+        peg$c37 = function (offset, options) {
       return {
         type: 'pluralFormat',
         offset: offset,
@@ -471,37 +471,37 @@ var parser = (function () {
         peg$c47 = { type: "literal", value: "0", description: "\"0\"" },
         peg$c48 = /^[1-9]/,
         peg$c49 = { type: "class", value: "[1-9]", description: "[1-9]" },
-        peg$c50 = function peg$c50(digits) {
+        peg$c50 = function (digits) {
       return parseInt(digits, 10);
     },
         peg$c51 = /^[^{}\\\0-\x1F \t\n\r]/,
         peg$c52 = { type: "class", value: "[^{}\\\\\\0-\\x1F \\t\\n\\r]", description: "[^{}\\\\\\0-\\x1F \\t\\n\\r]" },
         peg$c53 = "\\\\",
         peg$c54 = { type: "literal", value: "\\\\", description: "\"\\\\\\\\\"" },
-        peg$c55 = function peg$c55() {
+        peg$c55 = function () {
       return '\\';
     },
         peg$c56 = "\\#",
         peg$c57 = { type: "literal", value: "\\#", description: "\"\\\\#\"" },
-        peg$c58 = function peg$c58() {
+        peg$c58 = function () {
       return '\\#';
     },
         peg$c59 = "\\{",
         peg$c60 = { type: "literal", value: "\\{", description: "\"\\\\{\"" },
-        peg$c61 = function peg$c61() {
-      return '{';
+        peg$c61 = function () {
+      return '\u007B';
     },
         peg$c62 = "\\}",
         peg$c63 = { type: "literal", value: "\\}", description: "\"\\\\}\"" },
-        peg$c64 = function peg$c64() {
-      return '}';
+        peg$c64 = function () {
+      return '\u007D';
     },
-        peg$c65 = '\\u',
-        peg$c66 = { type: "literal", value: '\\u', description: '"\\\\u"' },
-        peg$c67 = function peg$c67(digits) {
+        peg$c65 = "\\u",
+        peg$c66 = { type: "literal", value: "\\u", description: "\"\\\\u\"" },
+        peg$c67 = function (digits) {
       return String.fromCharCode(parseInt(digits, 16));
     },
-        peg$c68 = function peg$c68(chars) {
+        peg$c68 = function (chars) {
       return chars.join('');
     },
         peg$currPos = 0,
@@ -533,7 +533,7 @@ var parser = (function () {
             }
             details.column = 1;
             details.seenCR = false;
-          } else if (ch === "\r" || ch === '\u2028' || ch === '\u2029') {
+          } else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
             details.line++;
             details.column = 1;
             details.seenCR = true;
@@ -654,7 +654,6 @@ var parser = (function () {
         s2 = peg$parsemessageFormatElement();
       }
       if (s1 !== peg$FAILED) {
-        peg$reportedPos = s0;
         s1 = peg$c1(s1);
       }
       s0 = s1;
@@ -728,7 +727,6 @@ var parser = (function () {
         s1 = peg$c2;
       }
       if (s1 !== peg$FAILED) {
-        peg$reportedPos = s0;
         s1 = peg$c3(s1);
       }
       s0 = s1;
@@ -750,7 +748,6 @@ var parser = (function () {
       s0 = peg$currPos;
       s1 = peg$parsemessageText();
       if (s1 !== peg$FAILED) {
-        peg$reportedPos = s0;
         s1 = peg$c4(s1);
       }
       s0 = s1;
@@ -864,7 +861,6 @@ var parser = (function () {
                     }
                   }
                   if (s7 !== peg$FAILED) {
-                    peg$reportedPos = s0;
                     s1 = peg$c14(s3, s5);
                     s0 = s1;
                   } else {
@@ -987,7 +983,6 @@ var parser = (function () {
             s3 = peg$c9;
           }
           if (s3 !== peg$FAILED) {
-            peg$reportedPos = s0;
             s1 = peg$c21(s1, s3);
             s0 = s1;
           } else {
@@ -1036,7 +1031,6 @@ var parser = (function () {
             if (s4 !== peg$FAILED) {
               s5 = peg$parsepluralStyle();
               if (s5 !== peg$FAILED) {
-                peg$reportedPos = s0;
                 s1 = peg$c24(s5);
                 s0 = s1;
               } else {
@@ -1093,7 +1087,6 @@ var parser = (function () {
             if (s4 !== peg$FAILED) {
               s5 = peg$parsepluralStyle();
               if (s5 !== peg$FAILED) {
-                peg$reportedPos = s0;
                 s1 = peg$c27(s5);
                 s0 = s1;
               } else {
@@ -1159,7 +1152,6 @@ var parser = (function () {
                 s5 = peg$c2;
               }
               if (s5 !== peg$FAILED) {
-                peg$reportedPos = s0;
                 s1 = peg$c30(s5);
                 s0 = s1;
               } else {
@@ -1260,7 +1252,6 @@ var parser = (function () {
                       }
                     }
                     if (s8 !== peg$FAILED) {
-                      peg$reportedPos = s0;
                       s1 = peg$c33(s2, s6);
                       s0 = s1;
                     } else {
@@ -1317,7 +1308,6 @@ var parser = (function () {
         if (s2 !== peg$FAILED) {
           s3 = peg$parsenumber();
           if (s3 !== peg$FAILED) {
-            peg$reportedPos = s0;
             s1 = peg$c36(s3);
             s0 = s1;
           } else {
@@ -1358,7 +1348,6 @@ var parser = (function () {
             s3 = peg$c2;
           }
           if (s3 !== peg$FAILED) {
-            peg$reportedPos = s0;
             s1 = peg$c37(s1, s3);
             s0 = s1;
           } else {
@@ -1525,7 +1514,6 @@ var parser = (function () {
         s1 = s2;
       }
       if (s1 !== peg$FAILED) {
-        peg$reportedPos = s0;
         s1 = peg$c50(s1);
       }
       s0 = s1;
@@ -1557,7 +1545,6 @@ var parser = (function () {
           }
         }
         if (s1 !== peg$FAILED) {
-          peg$reportedPos = s0;
           s1 = peg$c55();
         }
         s0 = s1;
@@ -1573,7 +1560,6 @@ var parser = (function () {
             }
           }
           if (s1 !== peg$FAILED) {
-            peg$reportedPos = s0;
             s1 = peg$c58();
           }
           s0 = s1;
@@ -1589,7 +1575,6 @@ var parser = (function () {
               }
             }
             if (s1 !== peg$FAILED) {
-              peg$reportedPos = s0;
               s1 = peg$c61();
             }
             s0 = s1;
@@ -1605,7 +1590,6 @@ var parser = (function () {
                 }
               }
               if (s1 !== peg$FAILED) {
-                peg$reportedPos = s0;
                 s1 = peg$c64();
               }
               s0 = s1;
@@ -1654,7 +1638,6 @@ var parser = (function () {
                   }
                   s2 = s3;
                   if (s2 !== peg$FAILED) {
-                    peg$reportedPos = s0;
                     s1 = peg$c67(s2);
                     s0 = s1;
                   } else {
@@ -1689,7 +1672,6 @@ var parser = (function () {
         s1 = peg$c2;
       }
       if (s1 !== peg$FAILED) {
-        peg$reportedPos = s0;
         s1 = peg$c68(s1);
       }
       s0 = s1;
@@ -1830,7 +1812,7 @@ defineProperty(MessageFormat, 'formats', {
 
 // Define internal private properties for dealing with locale data.
 defineProperty(MessageFormat, '__localeData__', { value: objCreate(null) });
-defineProperty(MessageFormat, '__addLocaleData', { value: function value(data) {
+defineProperty(MessageFormat, '__addLocaleData', { value: function (data) {
         if (!(data && data.locale)) {
             throw new Error('Locale data provided to IntlMessageFormat is missing a ' + '`locale` property');
         }
@@ -1973,7 +1955,7 @@ MessageFormat.prototype._resolveLocale = function (locales) {
 };
 
 // GENERATED FILE
-var defaultLocale = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
+var defaultLocale = { "locale": "en", "pluralRuleFunction": function (n, ord) {
     var s = String(n).split("."),
         v0 = !s[1],
         t0 = Number(s[0]) == n,
@@ -2144,7 +2126,7 @@ function RelativeFormat(locales, options) {
 
 // Define internal private properties for dealing with locale data.
 defineProperty$1(RelativeFormat, '__localeData__', { value: objCreate$1(null) });
-defineProperty$1(RelativeFormat, '__addLocaleData', { value: function value(data) {
+defineProperty$1(RelativeFormat, '__addLocaleData', { value: function (data) {
         if (!(data && data.locale)) {
             throw new Error('Locale data provided to IntlRelativeFormat is missing a ' + '`locale` property value');
         }
@@ -2190,8 +2172,6 @@ RelativeFormat.prototype._compileMessage = function (units) {
     // `this._locales` is the original set of locales the user specified to the
     // constructor, while `this._locale` is the resolved root locale.
     var locales = this._locales;
-    var resolvedLocale = this._locale;
-
     var field = this._fields[units];
     var relativeTime = field.relativeTime;
     var future = '';
@@ -2366,7 +2346,7 @@ RelativeFormat.prototype._selectUnits = function (diffReport) {
 };
 
 // GENERATED FILE
-var defaultLocale$1 = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
+var defaultLocale$1 = { "locale": "en", "pluralRuleFunction": function (n, ord) {
     var s = String(n).split("."),
         v0 = !s[1],
         t0 = Number(s[0]) == n,
@@ -2460,70 +2440,6 @@ function getLocaleData(Vue) {
         defaultFormats: Vue.__format_config.defaultFormats
     };
 }
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-  return typeof obj;
-} : function (obj) {
-  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-};
-
-var jsx = function () {
-  var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7;
-  return function createRawReactElement(type, props, key, children) {
-    var defaultProps = type && type.defaultProps;
-    var childrenLength = arguments.length - 3;
-
-    if (!props && childrenLength !== 0) {
-      props = {};
-    }
-
-    if (props && defaultProps) {
-      for (var propName in defaultProps) {
-        if (props[propName] === void 0) {
-          props[propName] = defaultProps[propName];
-        }
-      }
-    } else if (!props) {
-      props = defaultProps || {};
-    }
-
-    if (childrenLength === 1) {
-      props.children = children;
-    } else if (childrenLength > 1) {
-      var childArray = Array(childrenLength);
-
-      for (var i = 0; i < childrenLength; i++) {
-        childArray[i] = arguments[i + 3];
-      }
-
-      props.children = childArray;
-    }
-
-    return {
-      $$typeof: REACT_ELEMENT_TYPE,
-      type: type,
-      key: key === undefined ? null : '' + key,
-      ref: null,
-      props: props,
-      _owner: null
-    };
-  };
-}();
-
-var asyncIterator = function (iterable) {
-  if (typeof Symbol === "function") {
-    if (Symbol.asyncIterator) {
-      var method = iterable[Symbol.asyncIterator];
-      if (method != null) return method.call(iterable);
-    }
-
-    if (Symbol.iterator) {
-      return iterable[Symbol.iterator]();
-    }
-  }
-
-  throw new TypeError("Object is not async iterable");
-};
 
 var asyncGenerator = function () {
   function AwaitValue(value) {
@@ -2638,420 +2554,15 @@ var asyncGenerator = function () {
   };
 }();
 
-var asyncGeneratorDelegate = function (inner, awaitWrap) {
-  var iter = {},
-      waiting = false;
 
-  function pump(key, value) {
-    waiting = true;
-    value = new Promise(function (resolve) {
-      resolve(inner[key](value));
-    });
-    return {
-      done: false,
-      value: awaitWrap(value)
-    };
-  }
 
-  
 
-  if (typeof Symbol === "function" && Symbol.iterator) {
-    iter[Symbol.iterator] = function () {
-      return this;
-    };
-  }
-
-  iter.next = function (value) {
-    if (waiting) {
-      waiting = false;
-      return value;
-    }
-
-    return pump("next", value);
-  };
-
-  if (typeof inner.throw === "function") {
-    iter.throw = function (value) {
-      if (waiting) {
-        waiting = false;
-        throw value;
-      }
-
-      return pump("throw", value);
-    };
-  }
-
-  if (typeof inner.return === "function") {
-    iter.return = function (value) {
-      return pump("return", value);
-    };
-  }
-
-  return iter;
-};
-
-var asyncToGenerator = function (fn) {
-  return function () {
-    var gen = fn.apply(this, arguments);
-    return new Promise(function (resolve, reject) {
-      function step(key, arg) {
-        try {
-          var info = gen[key](arg);
-          var value = info.value;
-        } catch (error) {
-          reject(error);
-          return;
-        }
-
-        if (info.done) {
-          resolve(value);
-        } else {
-          return Promise.resolve(value).then(function (value) {
-            step("next", value);
-          }, function (err) {
-            step("throw", err);
-          });
-        }
-      }
-
-      return step("next");
-    });
-  };
-};
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 };
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-var defineEnumerableProperties = function (obj, descs) {
-  for (var key in descs) {
-    var desc = descs[key];
-    desc.configurable = desc.enumerable = true;
-    if ("value" in desc) desc.writable = true;
-    Object.defineProperty(obj, key, desc);
-  }
-
-  return obj;
-};
-
-var defaults = function (obj, defaults) {
-  var keys = Object.getOwnPropertyNames(defaults);
-
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var value = Object.getOwnPropertyDescriptor(defaults, key);
-
-    if (value && value.configurable && obj[key] === undefined) {
-      Object.defineProperty(obj, key, value);
-    }
-  }
-
-  return obj;
-};
-
-var defineProperty$2 = function (obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-var get = function get(object, property, receiver) {
-  if (object === null) object = Function.prototype;
-  var desc = Object.getOwnPropertyDescriptor(object, property);
-
-  if (desc === undefined) {
-    var parent = Object.getPrototypeOf(object);
-
-    if (parent === null) {
-      return undefined;
-    } else {
-      return get(parent, property, receiver);
-    }
-  } else if ("value" in desc) {
-    return desc.value;
-  } else {
-    var getter = desc.get;
-
-    if (getter === undefined) {
-      return undefined;
-    }
-
-    return getter.call(receiver);
-  }
-};
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
-var _instanceof = function (left, right) {
-  if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
-    return right[Symbol.hasInstance](left);
-  } else {
-    return left instanceof right;
-  }
-};
-
-var interopRequireDefault = function (obj) {
-  return obj && obj.__esModule ? obj : {
-    default: obj
-  };
-};
-
-var interopRequireWildcard = function (obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-      }
-    }
-
-    newObj.default = obj;
-    return newObj;
-  }
-};
-
-var newArrowCheck = function (innerThis, boundThis) {
-  if (innerThis !== boundThis) {
-    throw new TypeError("Cannot instantiate an arrow function");
-  }
-};
-
-var objectDestructuringEmpty = function (obj) {
-  if (obj == null) throw new TypeError("Cannot destructure undefined");
-};
-
-var objectWithoutProperties = function (obj, keys) {
-  var target = {};
-
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-
-  return target;
-};
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
-var selfGlobal = typeof global === "undefined" ? self : global;
-
-var set = function set(object, property, value, receiver) {
-  var desc = Object.getOwnPropertyDescriptor(object, property);
-
-  if (desc === undefined) {
-    var parent = Object.getPrototypeOf(object);
-
-    if (parent !== null) {
-      set(parent, property, value, receiver);
-    }
-  } else if ("value" in desc && desc.writable) {
-    desc.value = value;
-  } else {
-    var setter = desc.set;
-
-    if (setter !== undefined) {
-      setter.call(receiver, value);
-    }
-  }
-
-  return value;
-};
-
-var slicedToArray = function () {
-  function sliceIterator(arr, i) {
-    var _arr = [];
-    var _n = true;
-    var _d = false;
-    var _e = undefined;
-
-    try {
-      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-        _arr.push(_s.value);
-
-        if (i && _arr.length === i) break;
-      }
-    } catch (err) {
-      _d = true;
-      _e = err;
-    } finally {
-      try {
-        if (!_n && _i["return"]) _i["return"]();
-      } finally {
-        if (_d) throw _e;
-      }
-    }
-
-    return _arr;
-  }
-
-  return function (arr, i) {
-    if (Array.isArray(arr)) {
-      return arr;
-    } else if (Symbol.iterator in Object(arr)) {
-      return sliceIterator(arr, i);
-    } else {
-      throw new TypeError("Invalid attempt to destructure non-iterable instance");
-    }
-  };
-}();
-
-var slicedToArrayLoose = function (arr, i) {
-  if (Array.isArray(arr)) {
-    return arr;
-  } else if (Symbol.iterator in Object(arr)) {
-    var _arr = [];
-
-    for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
-      _arr.push(_step.value);
-
-      if (i && _arr.length === i) break;
-    }
-
-    return _arr;
-  } else {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance");
-  }
-};
-
-var taggedTemplateLiteral = function (strings, raw) {
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-};
-
-var taggedTemplateLiteralLoose = function (strings, raw) {
-  strings.raw = raw;
-  return strings;
-};
-
-var temporalRef = function (val, name, undef) {
-  if (val === undef) {
-    throw new ReferenceError(name + " is not defined - temporal dead zone");
-  } else {
-    return val;
-  }
-};
-
-var temporalUndefined = {};
-
-var toArray = function (arr) {
-  return Array.isArray(arr) ? arr : Array.from(arr);
-};
-
-var toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
-
-
-var babelHelpers$1 = Object.freeze({
-	jsx: jsx,
-	asyncIterator: asyncIterator,
-	asyncGenerator: asyncGenerator,
-	asyncGeneratorDelegate: asyncGeneratorDelegate,
-	asyncToGenerator: asyncToGenerator,
-	classCallCheck: classCallCheck,
-	createClass: createClass,
-	defineEnumerableProperties: defineEnumerableProperties,
-	defaults: defaults,
-	defineProperty: defineProperty$2,
-	get: get,
-	inherits: inherits,
-	interopRequireDefault: interopRequireDefault,
-	interopRequireWildcard: interopRequireWildcard,
-	newArrowCheck: newArrowCheck,
-	objectDestructuringEmpty: objectDestructuringEmpty,
-	objectWithoutProperties: objectWithoutProperties,
-	possibleConstructorReturn: possibleConstructorReturn,
-	selfGlobal: selfGlobal,
-	set: set,
-	slicedToArray: slicedToArray,
-	slicedToArrayLoose: slicedToArrayLoose,
-	taggedTemplateLiteral: taggedTemplateLiteral,
-	taggedTemplateLiteralLoose: taggedTemplateLiteralLoose,
-	temporalRef: temporalRef,
-	temporalUndefined: temporalUndefined,
-	toArray: toArray,
-	toConsumableArray: toConsumableArray,
-	typeof: _typeof,
-	extends: _extends,
-	instanceof: _instanceof
-});
 
 /*
  * This file is an unmodified copy of that used in the react-intl package.
@@ -3132,8 +2643,8 @@ var bind = Function.prototype.bind || function (oThis) {
 
     var aArgs = Array.prototype.slice.call(arguments, 1),
         fToBind = this,
-        fNOP = function fNOP() {},
-        fBound = function fBound() {
+        fNOP = function () {},
+        fBound = function () {
         return fToBind.apply(this instanceof fNOP ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
     };
 
@@ -3194,7 +2705,7 @@ See the accompanying LICENSE file for terms.
 
 // -----------------------------------------------------------------------------
 
-function createFormatCache$1(FormatConstructor) {
+function createFormatCache(FormatConstructor) {
     var cache = objCreate$2(null);
 
     return function () {
@@ -3229,7 +2740,7 @@ function getCacheId(inputs) {
     for (i = 0, len = inputs.length; i < len; i += 1) {
         input = inputs[i];
 
-        if (input && (typeof input === 'undefined' ? 'undefined' : babelHelpers$1['typeof'](input)) === 'object') {
+        if (input && typeof input === 'object') {
             cacheId.push(orderedProps(input));
         } else {
             cacheId.push(input);
@@ -3265,11 +2776,11 @@ function orderedProps(obj) {
 }
 
 var state = {
-    getDateTimeFormat: createFormatCache$1(Intl.DateTimeFormat),
-    getNumberFormat: createFormatCache$1(Intl.NumberFormat),
-    getMessageFormat: createFormatCache$1(MessageFormat),
-    getRelativeFormat: createFormatCache$1(RelativeFormat),
-    getPluralFormat: createFormatCache$1(IntlPluralFormat),
+    getDateTimeFormat: createFormatCache(Intl.DateTimeFormat),
+    getNumberFormat: createFormatCache(Intl.NumberFormat),
+    getMessageFormat: createFormatCache(MessageFormat),
+    getRelativeFormat: createFormatCache(RelativeFormat),
+    getPluralFormat: createFormatCache(IntlPluralFormat),
     now: Date.now()
 };
 
@@ -3689,64 +3200,121 @@ var formatMethods = Object.freeze({
 	formatHTMLMessage: formatHTMLMessage
 });
 
-var VueIntl = {
-    install: function install(Vue) {
-        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+var format = function format(ctx, values) {
+    return ctx.parent.$formatMessage(ctx.props, values);
+};
+var placeholder = function placeholder(name) {
+    return '@\0@\0' + name + '\0@\0@';
+};
+var placeholderRegex = /@\0@\0(.*?)\0@\0@/g;
 
-        Vue.addLocaleData = addLocaleData;
-        Vue.registerMessages = registerMessages.bind(null, Vue);
-        Vue.registerFormats = registerFormats.bind(null, Vue);
-        Vue.setLocale = setLocale.bind(null, Vue);
-        Vue.__format_state = state;
-        Vue.__format_config = {
-            defaultLocale: options.defaultLocale || 'en',
-            defaultFormats: options.defaultFormats || {}
-        };
+var FormattedMessage = {
+    functional: true,
 
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
+    props: {
+        id: { type: String, required: true },
+        defaultMessage: String,
+        values: Object,
+        tagName: { type: String, 'default': 'span' }
+    },
 
-        try {
-            var _loop = function _loop() {
-                var key = _step.value;
-
-                Vue.prototype['$' + key] = function () {
-                    var config = { locale: Vue.locale };
-                    Object.assign(config, getLocaleData(Vue));
-                    var state$$1 = Vue.__format_state;
-
-                    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-                        args[_key] = arguments[_key];
-                    }
-
-                    return formatMethods[key].apply(formatMethods, [config, state$$1].concat(args));
-                };
-            };
-
-            for (var _iterator = Object.getOwnPropertyNames(formatMethods).filter(function (name) {
-                return formatMethods[name] instanceof Function;
-            })[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                _loop();
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator['return']) {
-                    _iterator['return']();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
+    render: function render(h, ctx) {
+        var slots = ctx.slots();
+        var slotNames = Object.keys(slots);
+        if (slotNames.length === 0) {
+            return h(ctx.props.tagName, ctx.data, format(ctx, ctx.props.values));
         }
+
+        var values = Object.assign({}, ctx.props.values);
+        slotNames.forEach(function (slot) {
+            values[slot] = placeholder(slot);
+        });
+
+        var message = format(ctx, values);
+
+        var match = void 0;
+        var pos = 0;
+        var children = [];
+        while ((match = placeholderRegex.exec(message)) !== null) {
+            children.push(message.substring(pos, match.index), slots[match[1]]);
+            pos = match.index + match[0].length;
+        }
+        children.push(message.substring(pos));
+        return h(ctx.props.tagName, ctx.data, children);
     }
 };
 
-return VueIntl;
+// GENERATED FILE
+var defaultLocaleData = { "locale": "en", "pluralRuleFunction": function pluralRuleFunction(n, ord) {
+    var s = String(n).split("."),
+        v0 = !s[1],
+        t0 = Number(s[0]) == n,
+        n10 = t0 && s[0].slice(-1),
+        n100 = t0 && s[0].slice(-2);if (ord) return n10 == 1 && n100 != 11 ? "one" : n10 == 2 && n100 != 12 ? "two" : n10 == 3 && n100 != 13 ? "few" : "other";return n == 1 && v0 ? "one" : "other";
+  }, "fields": { "year": { "displayName": "year", "relative": { "0": "this year", "1": "next year", "-1": "last year" }, "relativeTime": { "future": { "one": "in {0} year", "other": "in {0} years" }, "past": { "one": "{0} year ago", "other": "{0} years ago" } } }, "year-short": { "displayName": "yr.", "relative": { "0": "this yr.", "1": "next yr.", "-1": "last yr." }, "relativeTime": { "future": { "one": "in {0} yr.", "other": "in {0} yr." }, "past": { "one": "{0} yr. ago", "other": "{0} yr. ago" } } }, "month": { "displayName": "month", "relative": { "0": "this month", "1": "next month", "-1": "last month" }, "relativeTime": { "future": { "one": "in {0} month", "other": "in {0} months" }, "past": { "one": "{0} month ago", "other": "{0} months ago" } } }, "month-short": { "displayName": "mo.", "relative": { "0": "this mo.", "1": "next mo.", "-1": "last mo." }, "relativeTime": { "future": { "one": "in {0} mo.", "other": "in {0} mo." }, "past": { "one": "{0} mo. ago", "other": "{0} mo. ago" } } }, "day": { "displayName": "day", "relative": { "0": "today", "1": "tomorrow", "-1": "yesterday" }, "relativeTime": { "future": { "one": "in {0} day", "other": "in {0} days" }, "past": { "one": "{0} day ago", "other": "{0} days ago" } } }, "day-short": { "displayName": "day", "relative": { "0": "today", "1": "tomorrow", "-1": "yesterday" }, "relativeTime": { "future": { "one": "in {0} day", "other": "in {0} days" }, "past": { "one": "{0} day ago", "other": "{0} days ago" } } }, "hour": { "displayName": "hour", "relative": { "0": "this hour" }, "relativeTime": { "future": { "one": "in {0} hour", "other": "in {0} hours" }, "past": { "one": "{0} hour ago", "other": "{0} hours ago" } } }, "hour-short": { "displayName": "hr.", "relative": { "0": "this hour" }, "relativeTime": { "future": { "one": "in {0} hr.", "other": "in {0} hr." }, "past": { "one": "{0} hr. ago", "other": "{0} hr. ago" } } }, "minute": { "displayName": "minute", "relative": { "0": "this minute" }, "relativeTime": { "future": { "one": "in {0} minute", "other": "in {0} minutes" }, "past": { "one": "{0} minute ago", "other": "{0} minutes ago" } } }, "minute-short": { "displayName": "min.", "relative": { "0": "this minute" }, "relativeTime": { "future": { "one": "in {0} min.", "other": "in {0} min." }, "past": { "one": "{0} min. ago", "other": "{0} min. ago" } } }, "second": { "displayName": "second", "relative": { "0": "now" }, "relativeTime": { "future": { "one": "in {0} second", "other": "in {0} seconds" }, "past": { "one": "{0} second ago", "other": "{0} seconds ago" } } }, "second-short": { "displayName": "sec.", "relative": { "0": "now" }, "relativeTime": { "future": { "one": "in {0} sec.", "other": "in {0} sec." }, "past": { "one": "{0} sec. ago", "other": "{0} sec. ago" } } } } };
+
+addLocaleData(defaultLocaleData);
+
+function install(Vue) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    Vue.addLocaleData = addLocaleData;
+    Vue.registerMessages = registerMessages.bind(null, Vue);
+    Vue.registerFormats = registerFormats.bind(null, Vue);
+    Vue.setLocale = setLocale.bind(null, Vue);
+    Vue.__format_state = state;
+    Vue.__format_config = {
+        defaultLocale: options.defaultLocale || 'en',
+        defaultFormats: options.defaultFormats || {}
+    };
+
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        var _loop = function _loop() {
+            var key = _step.value;
+
+            Vue.prototype['$' + key] = function () {
+                var config = { locale: Vue.locale };
+                Object.assign(config, getLocaleData(Vue));
+                var state$$1 = Vue.__format_state;
+
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
+                return formatMethods[key].apply(formatMethods, [config, state$$1].concat(args));
+            };
+        };
+
+        for (var _iterator = Object.getOwnPropertyNames(formatMethods).filter(function (name) {
+            return formatMethods[name] instanceof Function;
+        })[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            _loop();
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator['return']) {
+                _iterator['return']();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
+    }
+}
+
+exports.addLocaleData = addLocaleData;
+exports.install = install;
+exports.FormattedMessage = FormattedMessage;
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 //# sourceMappingURL=vue-intl.js.map

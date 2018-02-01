@@ -255,3 +255,17 @@ Will output the following
 
 
 Identical to $formatMessage, except that it will escape HTML specific strings to render HTML directly in the message.
+
+
+
+#### Loading additional locale data
+
+By default, only the en specific locale data is included in vue-intl. In order to load locale data for other locales, for example for proper pluralization, ordinals, and relative time formatting, you must load the relevant locale data. Ideally, you would do this dynamically, depending on the locale that is currently in use (as all locale data for all locales is in excess of 1MB).
+
+To use a specific locale, load the data from the relevant file:
+```js
+import esLocaleData from 'vue-intl/locale-data/es';
+import { addLocaleData } from 'vue-intl';
+
+addLocaleData(esLocaleData);
+```

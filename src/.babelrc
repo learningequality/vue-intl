@@ -1,9 +1,30 @@
 {
     "presets": [
-        "es2015"
+        ["es2015", {
+            "modules": false
+        }],
     ],
     "plugins": [
+        "transform-object-rest-spread",
+        "transform-class-properties",
         "transform-es3-member-expression-literals",
         "transform-es3-property-literals"
-    ]
+    ],
+    "env": {
+        "development": {
+            "plugins": [
+                "external-helpers"
+            ]
+        },
+        "production": {
+            "plugins": [
+                "external-helpers"
+            ]
+        },
+        "test": {
+            "plugins": [
+                "transform-es2015-modules-commonjs"
+            ]
+        }
+    }
 }
