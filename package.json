@@ -23,7 +23,7 @@
     "build:data": "babel-node scripts/build-data",
     "build:dev": "NODE_ENV=development rollup -c rollup.config.dist.js",
     "build:prod": "NODE_ENV=production rollup -c rollup.config.dist.js",
-    "build": "npm run build:dev && npm run build:prod",
+    "build": "npm run build:data && npm run build:dev && npm run build:prod",
     "prepublish": "npm run clean && npm run build"
   },
   "repository": {
