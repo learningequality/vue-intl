@@ -3,14 +3,13 @@ import setLocale from './setLocale';
 import getLocaleData from './getLocaleData';
 import state from './state';
 import * as formatMethods from './format';
-export { default as FormattedMessage } from './FormattedMessage'
-export { addLocaleData };
+import FormattedMessage from './FormattedMessage'
 import defaultLocaleData from './en';
 
 addLocaleData(defaultLocaleData);
 
 
-export function install(Vue, options={}) {
+function install(Vue, options={}) {
     Vue.addLocaleData = addLocaleData;
     Vue.registerMessages = registerMessages.bind(null, Vue);
     Vue.registerFormats = registerFormats.bind(null, Vue);
@@ -32,3 +31,9 @@ export function install(Vue, options={}) {
         }
     }
 };
+
+export default {
+    addLocaleData,
+    FormattedMessage,
+    install,
+}

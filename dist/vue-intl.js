@@ -39,10 +39,10 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.VueIntl = {})));
-}(this, (function (exports) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.VueIntl = factory());
+}(this, (function () { 'use strict';
 
 /*
 Copyright (c) 2014, Yahoo! Inc. All rights reserved.
@@ -3310,11 +3310,13 @@ function install(Vue) {
     }
 }
 
-exports.addLocaleData = addLocaleData;
-exports.install = install;
-exports.FormattedMessage = FormattedMessage;
+var vueIntl = {
+    addLocaleData: addLocaleData,
+    FormattedMessage: FormattedMessage,
+    install: install
+};
 
-Object.defineProperty(exports, '__esModule', { value: true });
+return vueIntl;
 
 })));
 //# sourceMappingURL=vue-intl.js.map
