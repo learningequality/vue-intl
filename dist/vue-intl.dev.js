@@ -3325,4 +3325,4 @@ var vueIntl = {
 return vueIntl;
 
 })));
-//# sourceMappingURL=vue-intl.js.map
+//# sourceMappingURL=vue-intl.dev.js.map

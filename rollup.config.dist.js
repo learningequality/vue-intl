@@ -53,7 +53,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 export default {
   input: p.resolve('src/vue-intl.js'),
   output: {
-    file: p.resolve(`dist/vue-intl.${isProduction ? 'min.js' : 'js'}`),
+    file: p.resolve(`dist/vue-intl.${isProduction ? 'prod.min.js' : 'dev.js'}`),
     format: 'umd',
   },
   name: 'VueIntl',
