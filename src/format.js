@@ -232,6 +232,12 @@ export function formatMessage(config, state, messageDescriptor = {}, values = {}
         return message || defaultMessage || id;
     }
 
+    // When debugging in English, show default string to enable hot module reloading
+    if (process.env.NODE_ENV === 'development' && defaultMessage && locale === 'en') {
+        var formatter = state.getMessageFormat(defaultMessage, locale, formats);
+        return formatter.format(values);
+    }
+
     let formattedMessage;
 
     if (message) {

@@ -30,7 +30,7 @@ function install(Vue, options={}) {
             return formatMethods[key](config, state, ...args);
         }
     }
-};
+}
 
 export default {
     addLocaleData,
