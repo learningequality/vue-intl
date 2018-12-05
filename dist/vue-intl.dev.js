@@ -3130,13 +3130,19 @@ function formatMessage(config, state) {
         return message || defaultMessage || id;
     }
 
+    // When debugging in English, show default string to enable hot module reloading
+    if ("development" === 'development' && defaultMessage && locale === 'en') {
+        var formatter = state.getMessageFormat(defaultMessage, locale, formats);
+        return formatter.format(values);
+    }
+
     var formattedMessage = void 0;
 
     if (message) {
         try {
-            var formatter = state.getMessageFormat(message, locale, formats);
+            var _formatter = state.getMessageFormat(message, locale, formats);
 
-            formattedMessage = formatter.format(values);
+            formattedMessage = _formatter.format(values);
         } catch (e) {
             {
                 console.error('[Vue Intl] Error formatting message: "' + id + '" for locale: "' + locale + '"' + (defaultMessage ? ', using default message as fallback.' : '') + ('\n' + e));
@@ -3156,9 +3162,9 @@ function formatMessage(config, state) {
 
     if (!formattedMessage && defaultMessage) {
         try {
-            var _formatter = state.getMessageFormat(defaultMessage, defaultLocale, defaultFormats);
+            var _formatter2 = state.getMessageFormat(defaultMessage, defaultLocale, defaultFormats);
 
-            formattedMessage = _formatter.format(values);
+            formattedMessage = _formatter2.format(values);
         } catch (e) {
             {
                 console.error('[Vue Intl] Error formatting the default message for: "' + id + '"' + ('\n' + e));
@@ -3319,4 +3325,4 @@ var vueIntl = {
 return vueIntl;
 
 })));
-//# sourceMappingURL=vue-intl.js.map
+//# sourceMappingURL=vue-intl.dev.js.map
