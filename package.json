@@ -75,6 +75,7 @@
     "formatjs-extract-cldr-data": "^4.0.0",
     "intl": "^1.1.0",
     "istanbul": "^1.0.0-alpha.2",
+    "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
     "rimraf": "^2.5.2",
     "rollup": "^0.50.0",
