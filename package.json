@@ -11,7 +11,7 @@
     "./locale-data/index.js": false
   },
   "engines": {
-    "node": ">=4.2"
+    "node": ">=6.0"
   },
   "scripts": {
     "clean": "rimraf coverage/ dist/",
