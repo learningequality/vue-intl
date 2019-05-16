@@ -44,7 +44,8 @@ import {
 
 import {
     escape,
-    filterProps
+    filterProps,
+    getMessage
 } from './utils';
 
 const DATE_TIME_FORMAT_OPTIONS = Object.keys(dateTimeFormatPropTypes);
@@ -223,7 +224,7 @@ export function formatMessage(config, state, messageDescriptor = {}, values = {}
         throw new TypeError('[Vue Intl] An `id` must be provided to format a message.');
     }
 
-    const message   = messages && messages[id];
+    const message   = messages && getMessage(messages, id);
     const hasValues = Object.keys(values).length > 0;
 
     // Avoid expensive message formatting for simple messages without values. In

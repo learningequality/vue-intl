@@ -33,3 +33,27 @@ export function filterProps(props, whitelist, defaults = {}) {
         return filtered;
     }, {});
 }
+
+/*
+First check if { path: { nested: 'content' }} exists to be returned,
+or return 'path.nested' key’s content (previous default behavior)
+*/
+export function getMessage(messages, messagePath) {
+    let message;
+
+    try {
+        const deepMessage = messagePath.split('.').reduce((namespace, prop) => {
+            return namespace && namespace[prop];
+        }, messages);
+
+        if (typeof deepMessage !== "string") {
+            throw new Error("Path not found");
+        }
+
+        message = deepMessage;
+    } catch(e) {
+        message = messages[messagePath];
+    }
+
+    return message;
+}
