@@ -86,7 +86,7 @@ function writeUMDFile(filename, module) {
       return bundle.write({
         file: filename,
         format: 'umd',
-        name: `ReactIntlLocaleData.${lang}`,
+        name: `VueIntlLocaleData.${lang}`,
       });
     })
     .then(() => filename);
