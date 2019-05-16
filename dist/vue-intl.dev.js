@@ -2913,6 +2913,30 @@ function filterProps(props, whitelist) {
 }
 
 /*
+First check if { path: { nested: 'content' }} exists to be returned,
+or return 'path.nested' key’s content (previous default behavior)
+*/
+function getMessage(messages, messagePath) {
+    var message = void 0;
+
+    try {
+        var deepMessage = messagePath.split('.').reduce(function (namespace, prop) {
+            return namespace && namespace[prop];
+        }, messages);
+
+        if (typeof deepMessage !== "string") {
+            throw new Error("Path not found");
+        }
+
+        message = deepMessage;
+    } catch (e) {
+        message = messages[messagePath];
+    }
+
+    return message;
+}
+
+/*
  * This file is a modified version of that used in the react-intl package.
  * https://github.com/yahoo/react-intl
  * The license notice below is provided to comply with the terms of the BSD license of that package.
@@ -3121,7 +3145,7 @@ function formatMessage(config, state) {
         throw new TypeError('[Vue Intl] An `id` must be provided to format a message.');
     }
 
-    var message = messages && messages[id];
+    var message = messages && getMessage(messages, id);
     var hasValues = Object.keys(values).length > 0;
 
     // Avoid expensive message formatting for simple messages without values. In
