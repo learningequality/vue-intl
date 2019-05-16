@@ -9,7 +9,7 @@ const state = {
     getMessageFormat : memoizeIntlConstructor(IntlMessageFormat),
     getRelativeFormat: memoizeIntlConstructor(IntlRelativeFormat),
     getPluralFormat  : memoizeIntlConstructor(IntlPluralFormat),
-    now: Date.now()
+    now: Date.now
 };
 
 export default state;
