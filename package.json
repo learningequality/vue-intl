@@ -11,12 +11,12 @@
     "./locale-data/index.js": false
   },
   "engines": {
-    "node": ">=4.2"
+    "node": ">=6.0"
   },
   "scripts": {
     "clean": "rimraf coverage/ dist/",
-    "test:code": "mocha",
-    "test:code-cov": "babel-node ./node_modules/istanbul/lib/cli cover --report lcovonly ./node_modules/.bin/_mocha",
+    "test:code": "NODE_ENV=test mocha",
+    "test:code-cov": "NODE_ENV=test babel-node ./node_modules/istanbul/lib/cli cover --report lcovonly ./node_modules/.bin/_mocha",
     "lint": "eslint .",
     "test": "npm run test:code && npm run lint",
     "test:cov": "npm run lint && npm run test:code-cov",
@@ -75,6 +75,7 @@
     "formatjs-extract-cldr-data": "^4.0.0",
     "intl": "^1.1.0",
     "istanbul": "^1.0.0-alpha.2",
+    "mkdirp": "^0.5.1",
     "mocha": "^2.4.5",
     "rimraf": "^2.5.2",
     "rollup": "^0.50.0",
