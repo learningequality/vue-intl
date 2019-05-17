@@ -2781,7 +2781,7 @@ var state = {
     getMessageFormat: createFormatCache(MessageFormat),
     getRelativeFormat: createFormatCache(RelativeFormat),
     getPluralFormat: createFormatCache(IntlPluralFormat),
-    now: Date.now()
+    now: Date.now
 };
 
 /*
